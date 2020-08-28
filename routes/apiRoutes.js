@@ -19,8 +19,17 @@ module.exports = function (app) {
     });
 
 
-    app.delete("api/notes/:id", function (req, res) {
-
-
+    app.delete("/api/notes/:id", function (req, res) {
+        var toDelete = req.params.id;
+        // console.log(toDelete);
+        for (i=0; i<notes.length ; i++) {
+            // console.log(notes[i].id)
+            if (notes[i].id == toDelete){
+                // console.log("one match" + JSON.stringify(notes[i]))
+                notes.splice(i, 1);
+            } 
+        }
+        res.send('Delete request complete')
     });
+
 };
